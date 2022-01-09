@@ -124,3 +124,14 @@ pessoa = {'nome': 'Caio Sampaio',
           'cidade': 'Franca'}
 
 print(pessoa['cidade'])
+
+# Funções
+def main():
+    primeiraFuncao()
+    segundaFuncao()
+
+def primeiraFuncao():
+    
+def segundaFuncao():
+
+main()
