@@ -18,8 +18,8 @@ print(f"Olá {nome}, tudo bem?")
 nome = input("Digite seu nome: ")
 idade = input("Digite sua idade: ")
 print(f"Olá {nome}, sua idade é {idade}.")
-# Exemplo:
-# Soma com Cast Int
+""" Exemplo:
+Soma com Cast Int """
 n1 = int(input("Digite o primeiro número: "))
 n2 = int(input("Digite o segundo número: "))
 print("A soma do primeiro número com o segundo é:" + n1 + n2)
