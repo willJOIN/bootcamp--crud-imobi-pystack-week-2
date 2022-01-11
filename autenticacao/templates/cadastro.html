@@ -1,0 +1,72 @@
+{% extends 'index.html' %} <!-- Conectar ao index.html -->
+
+{% load static %} <!-- Carregar arquivos da pasta static -->
+
+{% block 'head' %} 
+
+<link rel="stylesheet" href="{% static 'autenticacao/styles/styles.css' %}"> <!-- href dinâmico do CSS -->
+ 
+{% endblock %}
+
+{% block 'titulo' %}Cadastre-se{% endblock %}
+
+{% block 'body' %}
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 sidebar"> <!-- Coluna Verde -->
+        <div class="logo_sidebar">
+
+          <h2 class="logo">
+            <img class="img_logo_sidebar" src="{% static 'assets/logo.png' %}"
+            alt="Imagem Logo iMobi">iMOBI
+          </h2>
+        </div>
+        
+        <div class="corpo_sidebar">
+          <div>
+            <h2 class="titulo">Cadastre-se</h2>
+          </div>
+
+          <div>
+            <p class="titulo_descricao_cima">As melhores casas</p>
+            <p class="titulo_descricao_baixo">Nos melhores preços</p>
+            <br>
+            <br>
+            <a class="btn_logar" href="{% url 'login' %}">Login</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">  <!-- Coluna Branca -->
+        <div class="area_cadastrar">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert {{message.tags}}">
+                {{message}}
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          <form action="{% url 'cadastro' %}" method="POST">{% csrf_token %} <!-- Token de segurança -->
+            <h2 class="titulo_cadastrar">Cadastre-se</h2>
+            <br>
+            <input name="username" class="input_cadastrar input_cadastrar_username" type="text" placeholder="Usuário">
+            <br>
+            <br>
+            <input name="email" class="input_cadastrar input_cadastrar_email" type="text"
+            placeholder="Email">
+            <br>
+            <br>
+            <input name="senha" class="input_cadastrar
+            input_cadastrar_senha" type="text"
+            placeholder="Senha">
+            <br>
+            <input class="btn_cadastrar" type="submit" value="Cadastrar">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
