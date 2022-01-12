@@ -4,7 +4,7 @@
 
 {% block 'head' %} 
 
-<link rel="stylesheet" href="{% static 'autenticacao/styles/styles.css' %}"> <!-- href dinâmico do CSS -->
+<link rel="stylesheet" href="{% static 'autenticacao/styles/login.css' %}"> <!-- href dinâmico do CSS -->
  
 {% endblock %}
 
@@ -49,6 +49,8 @@
           {% endif %}
 
           <form action="{% url 'login' %}" method="POST">{% csrf_token %} <!-- Token de segurança -->
+            <h2 class="titulo_cadastrar">Login</h2>
+            <br>
             <input name="username" class="input_cadastrar input_cadastrar_email" type="text" placeholder="Usuário">
             <br>
             <br>
