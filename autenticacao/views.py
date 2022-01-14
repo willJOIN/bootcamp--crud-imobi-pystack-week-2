@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.messages import constants
+
 
 def cadastro(request):
     # Se entrar na página
@@ -38,6 +39,9 @@ def cadastro(request):
 
 def login(request):
     if request.method == "GET":
+        if request.user.is_authenticated:
+            return redirect('/')
+        # Se usuário não estiver logado
         return render(request, 'login.html')
     elif request.method == "POST":
         username = request.POST.get("username")
@@ -51,6 +55,8 @@ def login(request):
             auth.login(request, usuario)
             return redirect('/')
     
-    if request.user.is_authenticated:
-        return redirect('/')
+
+def sair(request):
+    auth.logout(request)
+    return redirect('/auth/login')
         
