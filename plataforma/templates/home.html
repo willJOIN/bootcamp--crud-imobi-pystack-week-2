@@ -22,15 +22,15 @@
       <div class="col-md cont">
         <div class="card_imovel">
           
-          <img class="img_capa_imovel" src="{{imovel.imagens.all.0.img.url}}">
+          <img class="img_capa_imovel" src="{{imovel.imagens.all.0.img.url}}" alt="Imagem do Imóvel">
           
           <div class="informacoes_imoveis">
-            <a class="a_none" href="">
+            <a class="a_none" href="{% url 'imovel' imovel.id %}">
               <h4 class="valor">R$ {{imovel.valor}}</h4>
             </a>
             <p>{{imovel.rua}}, {{imovel.cidade}}</p>
             <br>
-            <img id="favorito" src="{% static 'assets/heart.png' %}">
+            <img id="favorito" src="{% static 'assets/heart.png' %}" alt="Ícone Coração">
           </div>
         </div>
       </div>
