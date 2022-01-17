@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Repositório para armazenar projeto com Python e Django realizados na PyStack Week 2.0.
+Repositório para armazenar projeto com Python e Django realizado na PyStack Week 2.0.
 
 ## Licença
 
