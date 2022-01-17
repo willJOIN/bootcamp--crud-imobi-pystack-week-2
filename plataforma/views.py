@@ -1,7 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Imovei, Cidade
-from django.shortcuts import get_object_or_404
+from .models import Imovei, Cidade, Visitas
 
 # Página só pode ser acessada quando logado, se não, redireciona
 @login_required(login_url='/auth/logar/')
@@ -34,3 +33,27 @@ def imovel(request, id):
     # Exclui imóvel já visualizado e exibe 2 
     sugestoes = Imovei.objects.filter(cidade=imovel.cidade).exclude(id=id)[:2]
     return render(request, 'imovel.html', {'imovel': imovel})
+
+def agendar_visitas(request):
+    usuario = request.user
+    dia = request.POST.get('dia')
+    horario = request.POST.get('horario')
+    id_imovel = request.POST.get('id_imovel')
+    visita = Visitas(
+        imovel_id=id_imovel,
+        usuario=usuario,
+        dia=dia,
+        horario=horario
+    )
+    visita.save()
+    return redirect('/agendamentos')
+
+def agendamentos(request):
+    visitas = Visitas.objects.filter(usuario=request.user)
+    return render(request, "agendamentos.html", {'visitas': visitas})
+
+def cancelar_agendamento(request, id):
+    visitas = get_object_or_404(Visitas, id=id)
+    visitas.status = "C"
+    visitas.save()
+    return redirect('/agendamentos')
